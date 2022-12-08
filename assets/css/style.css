@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika&display=swap');
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Signika', sans-serif;
+    
+}
+
+body{
+    background-image: url("../Images/menu_pic_try.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+
+#menuTextContainer {
+    position: relative;
+    text-align: center;
+    margin-top: 13%;
+    margin-bottom: 5%;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+
+    
+}
+
+/*-the menu bar css-*/
+ul {
+    position:relative;
+}
+
+ul li {
+    margin-top: 40px;
+    list-style: none;
+    text-align: center;
+}
+
+ul li a {
+    width: 400px;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 5px 20px;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border-radius: 25px;
+}
+ul li a:link, a:visited {
+    background-color: #28a070;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(35, 108, 79);
+  }
