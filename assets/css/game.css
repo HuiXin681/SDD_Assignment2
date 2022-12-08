@@ -1,7 +1,11 @@
-#board{
+#board {
     display: flex;
 }
-.column{
-    padding:5px;
+
+.board-column {
+    padding:2px;
+    border: 1px;
+    border-color: #000000;
+    border-style:solid;
 }
 
