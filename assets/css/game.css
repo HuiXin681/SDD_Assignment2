@@ -1,11 +1,37 @@
-#board {
+body {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    margin-top: 20px;
+    display: flex;
+    width: 70%;
+}
+
+.board-row {
+    width: 5%;
 }
 
 .board-column {
-    padding:2px;
-    border: 1px;
-    border-color: #000000;
-    border-style:solid;
+    height: 30px;
+    padding: 2px;
+    border: 1px solid #000000;
+}
+
+.building-container {
+    display: flex;
+    padding: 20px;
+}
+
+.building-container .option {
+    padding: 20px;
+    font-size: 28px;
+}
+
+.drag-over {
+    border: dashed 3px red;
 }
 
