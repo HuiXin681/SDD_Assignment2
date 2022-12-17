@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="assets/css/game.css">
     <script src="assets/js/jquery-3.6.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script type="module" src="assets/js/game.js"></script>
 </head>
 <body>
-    <div class="board"></div>
-    <div class="building-container"></div>
+    <div class="container flex-row justify-content-between">
+        <a href="index.html">Back to Main Menu</a>
+        <div class="score">
+            Score: <span class="score-val">0</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="board"></div>
+        <div class="building-container"></div>
+    </div>
 </body>
 </html>

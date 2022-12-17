@@ -1,21 +1,21 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .board {
     margin-top: 20px;
     display: flex;
     width: 70%;
 }
 
-.board-row {
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-col {
     width: 5%;
 }
 
-.board-column {
+.board-cell {
     height: 30px;
     padding: 2px;
     border: 1px solid #000000;
@@ -31,7 +31,12 @@ body {
     font-size: 28px;
 }
 
+.building {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .drag-over {
     border: dashed 3px red;
 }
-
