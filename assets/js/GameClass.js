@@ -168,6 +168,9 @@ export class Game {
             o.addEventListener("dragstart", (e) => {
                 e.target.classList.add("being-dragged");
             });
+            o.addEventListener("dragend", (e) => {
+                e.target.classList.remove("being-dragged")
+            });
         }
     }
 
