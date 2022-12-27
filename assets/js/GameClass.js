@@ -72,7 +72,6 @@ export class Game {
     }
 
     updateTurn() {
-        console.log("Turn: " , this.turns);//toRemove
         this.turns++;
         $(".turn-val").html(String(this.turns));
         this.updateScore();
@@ -92,13 +91,11 @@ export class Game {
     }
 
     calculateScore() {
-        this.score = 0;
+        this.score = 0; // resets score every round so that it doesn't double count
         if (this.turns !== 2 ) {
             for (const cell of $(".board-cell.filled")) {
-                console.log("Building checking : ", cell.innerText)
                 const col = parseInt(cell.id.split("-")[0]);
                 const row = parseInt(cell.id.split("-")[1]);
-
 
                 let adjacent = [];
                 adjacent.push($("#" + col + "-" + (row - 1)));
@@ -111,23 +108,28 @@ export class Game {
                 sameRow.push($("#" + (col + 1) + "-" + row));
 
                 let toAdd = 0;
-
                 switch (cell.innerText) {
                     case "R":
+                        let nextToI = false;
                         for (const a of adjacent) {
                             const type = a[0].innerText;
-                            console.log("Type: " ,type);//toRemove
                             if (type === "I") {
-                                toAdd = 1;
-                                break;
+                                nextToI = true;
                             }
-                            else if (type === "R" || type === "C") {
-                                toAdd += 1;
-                                break;
-                            }
-                            else if (type === "O") {
-                                toAdd += 2;
-                                break;
+                        }
+                        if (nextToI === true){
+                            toAdd = 1;
+                            break;
+                        }
+                        else {
+                            for (const a of adjacent) {
+                                const type = a[0].innerText;
+                                if (type === "R" || type === "C") {
+                                    toAdd += 1;
+                                }
+                                else if (type === "O") {
+                                    toAdd += 2;
+                                }
                             }
                         }
                         break;
@@ -135,52 +137,41 @@ export class Game {
                         toAdd += 1;
                         for (const a of adjacent) {
                             const type = a[0].innerText;
-                            console.log("Type: " ,type);//toRemove
                             if (type === "R") {
                                 this.coins += 1;
-                                break;
                             }
                         }
                         break;
                     case "C":
                         for (const a of adjacent) {
                             const type = a[0].innerText;
-                            console.log(type);//toRemove
                             if (type === "C") {
                                 toAdd += 1;
-                                break;
                             }
                             else if (type === "R") {
                                 this.coins += 1;
-                                break;
                             }
                         }
                         break;
                     case "O":
                         for (const a of adjacent) {
                             const type = a[0].innerText;
-                            console.log("Type: " ,type);//toRemove
                             if (type === "O") {
                                 toAdd += 1;
-                                break;
                             }
                         }
                         break;
                     //Need to confirm about point system - if points are counted per connection or per road
                     case "*":
                         for (const sR of sameRow) {
-                            console.log(sR.ID);//toRemove
-                            const type = sameRow.innerText;
-                            if (type == "*") {
+                            const type = sR[0].innerText;
+                            if (type === "*") {
                                 toAdd += 1;
-                                break;
                             }
                         }
                         break;
                 }
                 this.score += toAdd;
-                console.log("ToAdd" , toAdd);//toRemove
-                console.log("Current Score" , this.score);//toRemove
             }
         }
     }
@@ -188,7 +179,6 @@ export class Game {
     createOptions() {
         for (let i = 0; i < 2; i++) {
             const building = this.buildings[Math.floor(Math.random() * this.buildings.length)].type;
-            //const building = this.buildings[0].type;//toRemove
             $(".building-container").append(
                 $(document.createElement('div'))
                     .addClass("option")
