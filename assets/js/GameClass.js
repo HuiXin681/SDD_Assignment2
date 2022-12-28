@@ -73,6 +73,7 @@ export class Game {
 
     updateTurn() {
         this.turns++;
+        this.checkBoard();
         $(".turn-val").html(String(this.turns));
         this.updateScore();
         this.updateCoin();
@@ -98,14 +99,26 @@ export class Game {
                 const row = parseInt(cell.id.split("-")[1]);
 
                 let adjacent = [];
-                adjacent.push($("#" + col + "-" + (row - 1)));
-                adjacent.push($("#" + col + "-" + (row + 1)));
-                adjacent.push($("#" + (col - 1) + "-" + row));
-                adjacent.push($("#" + (col + 1) + "-" + row));
+                if (col !== 0) {
+                    adjacent.push($("#" + (col - 1) + "-" + row));
+                }
+                if (col !== 19) {
+                    adjacent.push($("#" + (col + 1) + "-" + row));
+                }
+                if (row !== 0) {
+                    adjacent.push($("#" + col + "-" + (row - 1)));
+                }
+                if (row !== 19) {
+                    adjacent.push($("#" + col + "-" + (row + 1)));
+                }
 
                 let sameRow = [];
-                sameRow.push($("#" + (col - 1) + "-" + row));
-                sameRow.push($("#" + (col + 1) + "-" + row));
+                if (col !== 0) {
+                    sameRow.push($("#" + (col - 1) + "-" + row));
+                }
+                if (col !== 19) {
+                    sameRow.push($("#" + (col + 1) + "-" + row));
+                }
 
                 let toAdd = 0;
                 switch (cell.innerText) {
@@ -161,7 +174,6 @@ export class Game {
                             }
                         }
                         break;
-                    //Need to confirm about point system - if points are counted per connection or per road
                     case "*":
                         for (const sR of sameRow) {
                             const type = sR[0].innerText;
@@ -172,6 +184,17 @@ export class Game {
                         break;
                 }
                 this.score += toAdd;
+            }
+        }
+    }
+
+    checkBoard() {
+        for (const cell of $(".board-cell")) {
+            console.log(cell.innerText);
+            if (!cell.classList.contains("filled")) {
+                console.log("cell is not filled");
+                console.log("Starting turn " , this.turns);
+                break;
             }
         }
     }
