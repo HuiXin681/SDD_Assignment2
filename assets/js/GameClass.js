@@ -190,13 +190,13 @@ export class Game {
 
     checkBoard() {
         for (const cell of $(".board-cell")) {
-            console.log(cell.innerText);
             if (!cell.classList.contains("filled")) {
                 console.log("cell is not filled");
                 console.log("Starting turn " , this.turns);
                 break;
             }
         }
+        console.log("board has been filled");
     }
 
     createOptions() {
