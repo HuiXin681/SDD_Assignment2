@@ -16,4 +16,11 @@ $(function() {
         game = new Game(response.buildings);
         game.start();
     }
+
+    $("#form").submit(function(e){
+        e.preventDefault();
+        window.location.href= "leaderboard.html";
+        console.log("submitting");
+    });
+    
 });

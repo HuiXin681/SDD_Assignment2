@@ -1,0 +1,46 @@
+{
+    "leaderboard": [
+        {
+          "name": "John",
+          "score": "1520"
+          
+        },
+        {
+            "name": "Tom",
+            "score": "2500"
+        },
+        {
+            "name": "Jerry",
+            "score": "20"
+        },
+        {
+            "name": "Alice",
+            "score": "4000"
+        },
+        {
+            "name": "Timothy",
+            "score": "5600"
+        },
+        {
+            "name": "Sam",
+            "score": "1560"
+            
+        },
+        {
+            "name": "Doug",
+            "score": "2000"
+        },
+        {
+            "name": "Poppy",
+            "score": "10"
+        },
+        {
+            "name": "Perry",
+            "score": "4500"
+        },
+        {
+            "name": "Timothy2",
+            "score": "6000"
+        }
+      ]
+}

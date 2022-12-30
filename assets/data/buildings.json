@@ -3,26 +3,31 @@
     {
       "name": "Residential",
       "type": "R",
+      "image": "residential.png",
       "description": "If it is next to an industry (I), then it scores 1 point only. Otherwise, it scores 1 point for each adjacent residential (R) or commercial (C), and 2 points for each adjacent park (O)."
     },
     {
       "name": "Industry",
       "type": "I",
+      "image": "Industrial.png",
       "description": "Scores 1 point per industry in the city. Each industry generates 1 coin per residential building adjacent to it."
     },
     {
       "name": "Commercial",
       "type": "C",
+      "image": "commercial.png",
       "description": "Scores 1 point per commercial adjacent to it. Each commercial generates 1 coin per residential adjacent to it."
     },
     {
       "name": "Park",
       "type": "O",
+      "image": "park.png",
       "description": "Scores 1 point per park adjacent to it."
     },
     {
       "name": "Road",
       "type": "*",
+      "image": "road.png",
       "description": "Scores 1 point per connected road (*) in the same row."
     }
   ]

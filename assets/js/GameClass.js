@@ -6,7 +6,7 @@ export class Game {
 
     constructor(buildings = []) {
         buildings.forEach(b => {
-            const building = new Building(b.type, b.desc);
+            const building = new Building(b.type, b.desc, b.image, b.name);
             this.buildings.push(building);
         });
     }
@@ -14,6 +14,7 @@ export class Game {
     start() {
         this.createBoard();
         this.createOptions();
+        document.getElementById("myform").style.display = "none";
     }
 
     createBoard() {
@@ -69,16 +70,19 @@ export class Game {
             }
             $(".board").append(col);
         }
+        
     }
 
     updateTurn() {
+        this.fillboard();
         this.turns++;
-        this.checkBoard();
         $(".turn-val").html(String(this.turns));
         this.updateScore();
+        this.checkBoard();
         this.updateCoin();
         this.removeOptions();
         this.createOptions();
+        
     }
 
     updateScore() {
@@ -187,16 +191,38 @@ export class Game {
             }
         }
     }
-
+    // fillboard(){
+    //     let count = 0;
+        
+    //     for (const cell of $(".board-cell")) {
+    //         if (count < 398){
+    //             cell.classList.add("filled");
+    //             cell.classList.add("adjacent");
+    //             cell.innerText = "R";
+    //         }
+    //         else{
+    //             cell.classList.add("adjacent");
+    //         }
+    //         count++;
+    //     } 
+    // }   
+    
     checkBoard() {
+        let boardisfilled = true;
         for (const cell of $(".board-cell")) {
-            console.log(cell.innerText);
             if (!cell.classList.contains("filled")) {
                 console.log("cell is not filled");
                 console.log("Starting turn " , this.turns);
+                boardisfilled = false;
                 break;
             }
         }
+        console.log(boardisfilled);
+        if (boardisfilled || this.coins === 0){
+            localStorage.setItem('Score', this.score);
+            document.getElementById("myform").style.display = "block";
+        }
+
     }
 
     createOptions() {
@@ -207,6 +233,7 @@ export class Game {
                     .addClass("option")
                     .append(building)
                     .attr("draggable", "true")
+                    
             );
         }
 
@@ -231,14 +258,24 @@ export class Game {
         e.preventDefault();
         e.target.classList.add('drag-over');
     }
+
+
+    
 }
 
 class Building {
     type = "";
     desc = "";
+    image = "";
+    name = "";
 
-    constructor(type, desc) {
+    constructor(type, desc, image,name) {
         this.type = type;
         this.desc = desc;
+        this.name = name;
+        this.image = image;
     }
 }
+
+
+

@@ -8,6 +8,7 @@
     <script src="assets/js/jquery-3.6.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="assets/js/game.js"></script>
+    
 </head>
 <body>
     <div class="container flex-row justify-content-between">
@@ -26,5 +27,14 @@
         <div class="board"></div>
         <div class="building-container"></div>
     </div>
+
+    <div class="form-popup" id="myform">
+        <form id="form" class="form-container" action="">
+            <label for="username" id="usernamelabel">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </div>
+    
 </body>
 </html>
