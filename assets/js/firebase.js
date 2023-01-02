@@ -34,11 +34,11 @@ export class Firebase {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           playerId = user.uid;
-          set(ref(db, "Player", playerId), {
-            pid: playerId,
+          set(ref(db, `Player/${playerId}`), {
             game: {coins: 16, score: 0, turns: 1},
             buildings: buildings
           })
+          console.log(buildings)
           console.log(user)
         } else {
           // User is signed out
