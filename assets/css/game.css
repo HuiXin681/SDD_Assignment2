@@ -1,95 +1,130 @@
-body{
-    background-image: url("../img/grasspatch.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; 
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    
-}
-.board {
-    margin-top: 20px;
-    display: flex;
-    width: 70%;
+body {
+	/*overflow: hidden;*/
+	/*align-items: center;*/
+	/*justify-content: center;*/
+	/*background-image: url("../img/grasspatch.jpg");*/
+	/*background-repeat: no-repeat;*/
+	/*background-position: center;*/
+	/*background-size: cover;*/
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 98vh;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+.stats {
+	display: flex;
+	justify-content: space-between;
+}
+
+.game {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.board {
+	display: flex;
+	justify-content: center;
+	width: 70%;
+}
+
+.board-grid {
+	display: grid;
+	grid-template-columns: repeat(20, 28px);
+	grid-template-rows: repeat(20, 28px);
+	grid-gap: 1px;
 }
 
 .board-col {
-    width: 5%;
+	width: 5%;
 }
 
 .board-cell {
-    height: 30px;
-    padding: 2px;
-    border: 1px solid #000000;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	outline: 1px solid;
+	width: 100%;
 }
 
 .building-container {
-    display: flex;
-    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 20%;
 }
 
 .building-container .option {
-    padding: 20px;
-    font-size: 28px;
+	font-size: 28px;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	text-align: center;
+}
+
+.building-container .option img {
+	width: 100%;
 }
 
 .building {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	user-select: none;
 }
 
 .drag-over {
-    border: dashed 3px red;
+	border: dashed 3px #2f842f;
+}
+
+.filled .drag-over {
+	border: dashed 3px #F00;
 }
 
 /*leaderboard*/
 .form-popup {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
+	position: fixed;
+	z-index: 9;
+	right: 15px;
+	bottom: 0;
+	display: none;
+	border: 3px solid #f1f1f1;
 }
 
 .form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
+	max-width: 300px;
+	padding: 10px;
+	background-color: white;
 }
+
 .form-container input[type=text] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
+	width: 100%;
+	margin: 5px 0 22px 0;
+	padding: 15px;
+	border: none;
+	background: #f1f1f1;
 }
+
 .form-container input[type=text]:focus {
-    background-color: #ddd;
-    outline: none;
+	outline: none;
+	background-color: #ddd;
 }
+
 .form-container .btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 16px 20px;
+	cursor: pointer;
+	opacity: 0.8;
+	color: white;
+	border: none;
+	background-color: #04AA6D;
 }
 
 .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
