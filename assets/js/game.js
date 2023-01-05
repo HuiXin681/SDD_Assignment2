@@ -3,7 +3,7 @@ import { Firebase } from "./firebase.js"
 
 $(function() {
     let game;
-    let firebase = new Firebase();;
+    let firebase = new Firebase();
 
     $.ajax({
         url: "/assets/data/buildings.json",
