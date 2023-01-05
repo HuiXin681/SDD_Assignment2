@@ -1,29 +1,26 @@
+import {Firebase} from "./firebase.js";
+
 $(function () {
-	let data = [];
-	$.ajax({
-		url: "/assets/data/leaderboard.json",
-		data: {},
-		success: leaderboardData,
-		cache: false,
-		dataType: "json",
-		type: "GET"
-	});
+	let firebase = new Firebase();
+	firebase.getData();
+			
+	
+	// $.ajax({
+	// 	url: "/assets/data/leaderboard.json",
+	// 	data: {},
+	// 	success: leaderboardData,
+	// 	cache: false,
+	// 	dataType: "json",
+	// 	type: "GET"
+	// });
 
-	function leaderboardData(response) {
-		data = response.leaderboard;
-		data = data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-		appendData(data);
-	}
-
-	function appendData(data) {
-		let mainContainer = document.getElementById("myData");
-		mainContainer.innerHTML = "";
-		for (let i = 0; i < 10; i++) {
-			let div = document.createElement("div");
-			div.innerHTML = 'Name: ' + data[i].name + ' score: ' + data[i].score;
-			mainContainer.appendChild(div);
-		}
-	}
+	// function leaderboardData(response) {
+	// 	data = response.leaderboard;
+	// 	data = data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	// 	console.log(data);
+	// }
+	
+	
 
 	// let submittedleaderboard = false;
 

@@ -1,0 +1,32 @@
+div{
+    background-color: rgb(73, 174, 6);
+    color: white;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+    font-size: large;
+}
+#myData{
+    background-color: rgb(255, 255, 255);
+    border: none;
+}
+#button {
+    margin-left: 30%;
+    margin-top: -5%;
+    background-color: #45c38c; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 40%;
+  }
+  #button:hover {
+    background-color: #3fd3ae;
+    color: white;
+  }
+  

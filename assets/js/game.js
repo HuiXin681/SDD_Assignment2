@@ -1,9 +1,9 @@
 import {Game} from "./GameClass.js";
-import { Firebase } from "./firebase.js"
+import {Firebase} from "./firebase.js";
 
 $(function() {
     let game;
-    let firebase = new Firebase();;
+    let firebase = new Firebase();
 
     $.ajax({
         url: "/assets/data/buildings.json",
@@ -17,13 +17,16 @@ $(function() {
     function gameHandler(response) {
         game = new Game(response.buildings);
         game.start();
-        firebase.init(response.buildings);
     }
 
-    $("#form").submit(function(e){
-        e.preventDefault();
-        window.location.href= "leaderboard.html";
-        console.log("submitting");
-    });
+    
+        $("#form").submit(function(e){
+            e.preventDefault();
+            game.name = $("#username").val();
+            console.log("submitting");
+            firebase.init(game);
+            
+        });
+   
 
 });

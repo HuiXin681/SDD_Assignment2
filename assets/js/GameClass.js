@@ -1,3 +1,4 @@
+import {Firebase} from "./firebase.js";
 export class Game {
 	cols = 20;
 	rows = 20;
@@ -5,6 +6,7 @@ export class Game {
 	coins = 16;
 	turns = 1;
 	buildings = [];
+    name = "";
 
 	constructor(buildings = []) {
 		buildings.forEach(b => {
@@ -191,20 +193,20 @@ export class Game {
 		}
 	}
 
-	// fillboard() {
-	//     let count = 0;
-	//     for (const cell of $(".board-cell")) {
-	//         if (count < 398){
-	//             cell.classList.add("filled");
-	//             cell.classList.add("adjacent");
-	//             cell.innerText = "R";
-	//         }
-	//         else{
-	//             cell.classList.add("adjacent");
-	//         }
-	//         count++;
-	//     }
-	// }
+	fillboard() {
+	    let count = 0;
+	    for (const cell of $(".board-cell")) {
+	        if (count < 398){
+	            cell.classList.add("filled");
+	            cell.classList.add("adjacent");
+	            cell.innerText = "R";
+	        }
+	        else{
+	            cell.classList.add("adjacent");
+	        }
+	        count++;
+	    }
+	}
 
 	checkBoard() {
 		let isFilled = true;
@@ -218,9 +220,12 @@ export class Game {
 		}
 		console.log(isFilled);
 		if (isFilled || this.coins === 0) {
-			localStorage.setItem('Score', this.score.toString());
-			document.getElementById("form-popup").style.display = "block";
+			let firebase = new Firebase();
+			firebase.comparedata(this.score);
+			
+			
 		}
+
 	}
 
 	createOptions() {
