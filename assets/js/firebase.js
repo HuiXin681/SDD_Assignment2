@@ -1,7 +1,7 @@
-import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
-import {getAuth, onAuthStateChanged, signInAnonymously} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import {getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import {initializeApp} from "./firebase-app";
+import {getAnalytics} from "./firebase-analytics";
+import {getAuth, onAuthStateChanged, signInAnonymously} from "./firebase-auth";
+import {getDatabase, ref, set} from "./firebase-database";
 
 export class Firebase {
 
