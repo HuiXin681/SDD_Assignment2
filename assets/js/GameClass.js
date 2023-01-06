@@ -58,7 +58,7 @@ export class Game {
 
 	createBoard(data = undefined) {
 		const keys = data === undefined ? 0 : Object.keys(data);
-
+		let adjacent = [];
 		for (let i = 0; i < this.rows; i++) {
 			for (let j = 0; j < this.cols; j++) {
 				const cell = document.createElement("div");
@@ -68,9 +68,13 @@ export class Game {
 					for (const key of keys) {
 						if (data[key].length !== 0) {
 							if (data[key].indexOf(cell.id) !== -1) {
-								let content = "<div class='building'>" + key + "</div>";
+								const content = "<div class='building'>" + key + "</div>";
 								cell.innerHTML = content;
 								cell.classList.add("filled");
+								adjacent.push(`#${i}-${j - 1}`);
+								adjacent.push(`#${i}-${j + 1}`);
+								adjacent.push(`#${i - 1}-${j}`);
+								adjacent.push(`#${i + 1}-${j}`);
 							}
 						}
 					}
@@ -158,7 +162,9 @@ export class Game {
 				$(".board-grid").append(cell);
 			}
 		}
-
+		for (const a of adjacent) {
+			$(a).addClass("adjacent");
+		}
 	}
 
 	updateTurn() {
