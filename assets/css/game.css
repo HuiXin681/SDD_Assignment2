@@ -77,11 +77,11 @@ body {
 }
 
 .drag-over {
-	border: dashed 3px #2f842f;
+	border: dashed 3px #F00;
 }
 
 .filled .drag-over {
-	border: dashed 3px #F00;
+	border: none;
 }
 
 /*leaderboard*/

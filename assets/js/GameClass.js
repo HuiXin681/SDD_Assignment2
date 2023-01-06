@@ -43,9 +43,48 @@ export class Game {
 					e.target.classList.remove('drag-over');
 				});
 
+				cell.addEventListener("mouseover", (e) => {
+					if ($(".selected").length !== 0) {
+						this.dragOver(e);
+					}
+				});
+
+				cell.addEventListener("mouseout", (e) => {
+					e.target.classList.remove('drag-over');
+				})
+
+				cell.addEventListener('click', (e) => {
+					if (e.target.classList.value.includes("filled")) {
+						return;
+					}
+
+					const option = $(".selected")[0];
+
+					if (option === undefined) {
+						return;
+					}
+
+					const box = e.target;
+					if (box.classList.contains("adjacent") || this.turns === 1) {
+						const type = option.innerHTML.split("(")[1][0];
+						let content = "<div class='building'>" + type + "</div>";
+
+						box.classList.add("filled");
+						box.classList.remove("drag-over");
+						box.innerHTML = content;
+						option.classList.remove("selected");
+
+						$("#" + i + "-" + (j - 1)).addClass("adjacent");
+						$("#" + i + "-" + (j + 1)).addClass("adjacent");
+						$("#" + (i - 1) + "-" + j).addClass("adjacent");
+						$("#" + (i + 1) + "-" + j).addClass("adjacent");
+
+						this.updateTurn();
+					}
+				});
+
 				cell.addEventListener('drop', (e) => {
 					if (e.target.classList.value.includes("filled")) {
-						e.target.classList.remove('drag-over');
 						return;
 					}
 
@@ -72,9 +111,7 @@ export class Game {
 					e.target.classList.remove('drag-over');
 				});
 				$(".board-grid").append(cell);
-				// col.append(cell);
 			}
-			// $(".board").append(col);
 		}
 
 	}
@@ -107,22 +144,21 @@ export class Game {
 			const row = parseInt(cell.id.split("-")[0]);
 			const col = parseInt(cell.id.split("-")[1]);
 
-			console.log(cell.id);
 
 			let adjacent = [];
 
 			// TODO: change to try catch
-			if (col !== 0) {
-				adjacent.push($("#" + (col - 1) + "-" + row));
-			}
-			if (col !== 19) {
-				adjacent.push($("#" + (col + 1) + "-" + row));
-			}
 			if (row !== 0) {
-				adjacent.push($("#" + col + "-" + (row - 1)));
+				adjacent.push($("#" + (row - 1) + "-" + col));
 			}
 			if (row !== 19) {
-				adjacent.push($("#" + col + "-" + (row + 1)));
+				adjacent.push($("#" + (row + 1) + "-" + col));
+			}
+			if (col !== 0) {
+				adjacent.push($("#" + row + "-" + (col - 1)));
+			}
+			if (col !== 19) {
+				adjacent.push($("#" + row + "-" + (col + 1)));
 			}
 
 			let toAdd = 0;
@@ -134,9 +170,11 @@ export class Game {
 						if (type === "I") {
 							toAdd = 1;
 							break;
-						} else if (type === "R" || type === "C") {
+						}
+						else if (type === "R" || type === "C") {
 							toAdd += 1;
-						} else if (type === "O") {
+						}
+						else if (type === "O") {
 							toAdd += 2;
 						}
 					}
@@ -155,7 +193,8 @@ export class Game {
 						const type = a[0].innerText;
 						if (type === "C") {
 							toAdd += 1;
-						} else if (type === "R") {
+						}
+						else if (type === "R") {
 							this.coins += 1;
 						}
 					}
@@ -172,21 +211,17 @@ export class Game {
 					if (roads.indexOf(row) !== -1) {
 						break;
 					}
-
-					roads.push(row);
-					console.log(roads);
-
 					let con = 0;
 					for (let i = col; i < this.cols; i++) {
 						const cellType = $("#" + row + "-" + i)[0].innerText;
 						if (cellType === "*") {
 							con += 1;
-						} else {
+						}
+						else {
 							toAdd += con === 0 ? 0 : con - 1;
 							con = 0;
 						}
 					}
-					console.log("toAdd: " + toAdd);
 					break;
 			}
 			this.score += toAdd;
@@ -212,13 +247,10 @@ export class Game {
 		let isFilled = true;
 		for (const cell of $(".board-cell")) {
 			if (!cell.classList.contains("filled")) {
-				console.log("cell is not filled");
-				console.log("Starting turn ", this.turns);
 				isFilled = false;
 				break;
 			}
 		}
-		console.log(isFilled);
 		if (isFilled || this.coins === 0) {
 			let firebase = new Firebase();
 			firebase.comparedata(this.score);
@@ -250,7 +282,10 @@ export class Game {
 				e.target.classList.add("being-dragged");
 			});
 			o.addEventListener("dragend", (e) => {
-				e.target.classList.remove("being-dragged")
+				e.target.classList.remove("being-dragged");
+			});
+			o.addEventListener('click',(e) => {
+				this.select(e.target);
 			});
 		}
 	}
@@ -263,6 +298,22 @@ export class Game {
 		if (!e.target.classList.value.includes("filled")) {
 			e.preventDefault();
 			e.target.classList.add('drag-over');
+		}
+	}
+
+	select(target) {
+		if (target.localName === "img") {
+			this.select(target.parentElement);
+		}
+		else {
+			const target_class = target.classList;
+			if (target_class.value.includes("selected")) {
+				target_class.remove('selected');
+			}
+			else {
+				$(".selected").removeClass("selected");
+				target_class.add('selected');
+			}
 		}
 	}
 }
