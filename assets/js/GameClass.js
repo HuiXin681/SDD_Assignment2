@@ -211,6 +211,7 @@ export class Game {
 					if (roads.indexOf(row) !== -1) {
 						break;
 					}
+					roads.push(row);
 					let con = 0;
 					for (let i = col; i < this.cols; i++) {
 						const cellType = $("#" + row + "-" + i)[0].innerText;
