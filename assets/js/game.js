@@ -18,15 +18,11 @@ $(function() {
         game = new Game(response.buildings);
         game.start();
     }
-
     
-        $("#form").submit(function(e){
-            e.preventDefault();
-            game.name = $("#username").val();
-            console.log("submitting");
-            firebase.init(game);
-            
-        });
-   
-
+    $("#form").submit(function(e){
+        e.preventDefault();
+        game.name = $("#username").val();
+        console.log("submitting");
+        firebase.init(game);
+    });
 });

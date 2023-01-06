@@ -5,7 +5,16 @@
     <title>Ngee Ann City</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="exitgame.js"></script>
+    <script>
+        function loadGame() {
+            localStorage.setItem("status", "loading");
+            window.location.href = "game.html";
+        }
+
+        function exitGame() {
+            console.log("exit");
+        }
+    </script>
 </head>
 <body>
     <div id="menuTextContainer">
@@ -17,13 +26,13 @@
             <a href="game.html"> Start New Game</a>
           </li>
           <li>
-            <a href=""> Load Saved Game</a>
+            <a onclick="loadGame()"> Load Saved Game</a>
           </li>
           <li>
             <a href="leaderboard.html"> Display High Scores</a>
           </li>
           <li>
-            <a href="">Exit Game</a>
+            <a onclick="exitGame()">Exit Game</a>
           </li>
         </ul>
       </div>

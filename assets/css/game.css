@@ -15,6 +15,7 @@ body {
 
 .stats {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 
@@ -54,10 +55,6 @@ body {
 	flex-direction: column;
 	justify-content: space-around;
 	width: 20%;
-}
-
-.turn,.coin,.score{
-	margin-top: 1%;
 }
 
 .building-container .option {
@@ -145,8 +142,9 @@ body {
 .form-container .btn:hover, .open-button:hover {
 	opacity: 1;
 }
+
 /*Button style*/
-.save, a{
+.save, a {
 	background-color: #4CAF50; /* Green */
 	border: none;
 	color: white;
@@ -158,10 +156,11 @@ body {
 	display: inline-block;
 	cursor: pointer;
 	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
+	/*transition-duration: 0.4s;*/
 }
-.save:hover, a:hover{
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+.save:hover, a:hover {
+	/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
 	color:white;
 }
 

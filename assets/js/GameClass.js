@@ -16,20 +16,69 @@ export class Game {
 	}
 
 	start() {
-		this.createBoard();
+		let data;
+		if (localStorage.getItem("status")) {
+			data = JSON.parse(localStorage.getItem("save"));
+			localStorage.removeItem("status");
+			console.log(data);
+			this.turns = data.turns;
+			this.coins = data.coins;
+			this.score = data.score;
+			data = data.buildings;
+			$(".turn-val").html(String(this.turns));
+			$(".coin-val").html(String(this.coins));
+			$(".score-val").html(String(this.score));
+		}
+		this.createBoard(data);
 		this.createOptions();
 		document.getElementById("form-popup").style.display = "none";
+		document.getElementById("save").addEventListener("click", ev => this.save());
 	}
 
-	createBoard() {
-		for (let i = 0; i < this.cols; i++) {
-			// const col = document.createElement("div");
-			// col.classList.add("board-col");
+	save() {
+		let buildings = {};
+		for (const b of this.buildings) {
+			buildings[b.type] = [];
+		}
 
-			for (let j = 0; j < this.rows; j++) {
+		for (const cell of $(".filled")) {
+			const type = cell.innerText;
+			buildings[type].push(cell.id);
+		}
+
+		const save = {
+			"buildings": buildings,
+			"turns": this.turns,
+			"coins": this.coins,
+			"score": this.score
+		}
+
+		localStorage.setItem("save", JSON.stringify(save));
+	}
+
+	createBoard(data = undefined) {
+		const keys = data === undefined ? 0 : Object.keys(data);
+		let adjacent = [];
+		for (let i = 0; i < this.rows; i++) {
+			for (let j = 0; j < this.cols; j++) {
 				const cell = document.createElement("div");
 				cell.classList.add("board-cell");
 				cell.id = i + "-" + j;
+				if (keys !== 0) {
+					for (const key of keys) {
+						if (data[key].length !== 0) {
+							if (data[key].indexOf(cell.id) !== -1) {
+								const content = "<div class='building'>" + key + "</div>";
+								cell.innerHTML = content;
+								cell.classList.add("filled");
+								adjacent.push(`#${i}-${j - 1}`);
+								adjacent.push(`#${i}-${j + 1}`);
+								adjacent.push(`#${i - 1}-${j}`);
+								adjacent.push(`#${i + 1}-${j}`);
+							}
+						}
+					}
+				}
 
 				cell.addEventListener('dragenter', (e) => {
 					this.dragOver(e);
@@ -67,7 +116,7 @@ export class Game {
 					const box = e.target;
 					if (box.classList.contains("adjacent") || this.turns === 1) {
 						const type = option.innerHTML.split("(")[1][0];
-						let content = "<div class='building'>" + type + "</div>";
+						const content = "<div class='building'>" + type + "</div>";
 
 						box.classList.add("filled");
 						box.classList.remove("drag-over");
@@ -94,7 +143,7 @@ export class Game {
 					for (const box of boxes) {
 						if (box.classList.contains("adjacent") || this.turns === 1) {
 							const type = option.innerHTML.split("(")[1][0];
-							let content = "<div class='building'>" + type + "</div>";
+							const content = "<div class='building'>" + type + "</div>";
 
 							box.classList.add("filled");
 							box.innerHTML = content;
@@ -113,11 +162,13 @@ export class Game {
 				$(".board-grid").append(cell);
 			}
 		}
-
+		for (const a of adjacent) {
+			$(a).addClass("adjacent");
+		}
 	}
 
 	updateTurn() {
-		this.fillboard();
+		// this.fillboard();
 		this.turns++;
 		$(".turn-val").html(String(this.turns));
 		this.updateScore();
