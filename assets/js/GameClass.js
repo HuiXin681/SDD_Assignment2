@@ -16,7 +16,20 @@ export class Game {
 	}
 
 	start() {
-		this.createBoard();
+		let data;
+		if (localStorage.getItem("status")) {
+			data = JSON.parse(localStorage.getItem("save"));
+			localStorage.removeItem("status");
+			console.log(data);
+			this.turns = data.turns;
+			this.coins = data.coins;
+			this.score = data.score;
+			data = data.buildings;
+			$(".turn-val").html(String(this.turns));
+			$(".coin-val").html(String(this.coins));
+			$(".score-val").html(String(this.score));
+		}
+		this.createBoard(data);
 		this.createOptions();
 		document.getElementById("form-popup").style.display = "none";
 		document.getElementById("save").addEventListener("click", ev => this.save());
@@ -43,12 +56,25 @@ export class Game {
 		localStorage.setItem("save", JSON.stringify(save));
 	}
 
-	createBoard() {
-		for (let i = 0; i < this.cols; i++) {
-			for (let j = 0; j < this.rows; j++) {
+	createBoard(data = undefined) {
+		const keys = data === undefined ? 0 : Object.keys(data);
+
+		for (let i = 0; i < this.rows; i++) {
+			for (let j = 0; j < this.cols; j++) {
 				const cell = document.createElement("div");
 				cell.classList.add("board-cell");
 				cell.id = i + "-" + j;
+				if (keys !== 0) {
+					for (const key of keys) {
+						if (data[key].length !== 0) {
+							if (data[key].indexOf(cell.id) !== -1) {
+								let content = "<div class='building'>" + key + "</div>";
+								cell.innerHTML = content;
+								cell.classList.add("filled");
+							}
+						}
+					}
+				}
 
 				cell.addEventListener('dragenter', (e) => {
 					this.dragOver(e);
@@ -86,7 +112,7 @@ export class Game {
 					const box = e.target;
 					if (box.classList.contains("adjacent") || this.turns === 1) {
 						const type = option.innerHTML.split("(")[1][0];
-						let content = "<div class='building'>" + type + "</div>";
+						const content = "<div class='building'>" + type + "</div>";
 
 						box.classList.add("filled");
 						box.classList.remove("drag-over");
@@ -113,7 +139,7 @@ export class Game {
 					for (const box of boxes) {
 						if (box.classList.contains("adjacent") || this.turns === 1) {
 							const type = option.innerHTML.split("(")[1][0];
-							let content = "<div class='building'>" + type + "</div>";
+							const content = "<div class='building'>" + type + "</div>";
 
 							box.classList.add("filled");
 							box.innerHTML = content;
@@ -136,7 +162,7 @@ export class Game {
 	}
 
 	updateTurn() {
-		this.fillboard();
+		// this.fillboard();
 		this.turns++;
 		$(".turn-val").html(String(this.turns));
 		this.updateScore();
@@ -350,11 +376,4 @@ class Building {
 		this.name = name;
 		this.image = image;
 	}
-}
-
-class Save {
-	buildings;
-	turns;
-	coins;
-	score;
 }

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Signika&display=swap');
 
-* {
+*, ul, li {
 	font-family: 'Signika', sans-serif;
 	box-sizing: border-box;
 	margin: 0;
@@ -15,19 +15,21 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	height: 99vh;
+	display: flex;
+	align-content: center;
 }
 
 #menuTextContainer {
 	font-size: 40px;
 	position: relative;
-	margin-top: 13%;
-	margin-bottom: 5%;
 	text-align: center;
-	color: rgb(255, 255, 255);
+	color: #fff;
 }
 
 /*-the menu bar css-*/
 ul {
+	margin-top: 20px;
 	position: relative;
 }
 
@@ -42,22 +44,22 @@ ul li a {
 	font-weight: bold;
 	display: inline-block;
 	width: 400px;
-	padding: 5px 20px;
 	text-decoration: none;
 	color: rgb(255, 255, 255);
 	border-radius: 25px;
 }
 
-ul li a:link, a:visited {
+a, a:link, a:visited {
 	display: inline-block;
 	padding: 14px 25px;
 	text-align: center;
 	text-decoration: none;
 	color: white;
-	background-color: #28a070;
+	background-color: #4CAF50;
 }
 
 a:hover, a:active {
-	background-color: rgb(35, 108, 79);
+	cursor: pointer;
+	background-color: #479e4b;
 }
 
