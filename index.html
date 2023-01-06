@@ -12,7 +12,11 @@
         }
 
         function exitGame() {
-            console.log("exit");
+            try{
+              window.close();
+            }catch(e){
+              console.log(e);
+            }
         }
     </script>
 </head>
