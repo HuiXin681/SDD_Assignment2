@@ -60,17 +60,4 @@ ul li a:link, a:visited {
 a:hover, a:active {
 	background-color: rgb(35, 108, 79);
 }
-#exit{
-	display: inline-block;
-	padding: 14px 25px;
-	text-align: center;
-	text-decoration: none;
-	color: white;
-	background-color: #28a070;
-	border-radius: 25px;
-	width: 400px;
-	border-color:  rgba(35, 108, 79, 0);
-}
-#exit:hover, #exit:active{
-	background-color: rgb(35, 108, 79);
-}
+
