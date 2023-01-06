@@ -188,8 +188,8 @@ export class Game {
 		this.turns++;
 		$(".turn-val").html(String(this.turns));
 		this.updateScore();
-		this.checkBoard();
 		this.updateCoin();
+		this.checkBoard();
 		this.removeOptions();
 		this.createOptions();
 	}
