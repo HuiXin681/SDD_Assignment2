@@ -134,7 +134,13 @@ export class Game {
 						$("#" + (i + 1) + "-" + j).addClass("adjacent");
 
 						this.updateTurn();
+
+						const arrow = $(".fa-arrow-right");
+						for (const a of arrow) {
+							a.style.visibility = 'hidden';
+						}
 					}
+
 				});
 
 				cell.addEventListener('drop', (e) => {
@@ -160,6 +166,11 @@ export class Game {
 							$("#" + (i + 1) + "-" + j).addClass("adjacent");
 
 							this.updateTurn();
+
+							const arrow = $(".fa-arrow-right");
+							for (const a of arrow) {
+								a.style.visibility = 'hidden';
+							}
 						}
 					}
 					e.target.classList.remove('drag-over');
@@ -343,6 +354,20 @@ export class Game {
 			});
 			o.addEventListener('click',(e) => {
 				this.select(e.target);
+
+				const option = $(".option");
+				const selected =  $(".selected");
+				const arrow = $(".fa-arrow-right");
+
+				const index = option.index(selected);
+
+				for (const a of arrow) {
+					a.style.visibility = 'hidden';
+				}
+
+				console.log(arrow[index]);
+
+				arrow[index].style.visibility= 'visible';
 			});
 		}
 	}

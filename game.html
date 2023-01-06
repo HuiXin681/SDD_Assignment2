@@ -8,10 +8,12 @@
     <script src="assets/js/jquery-3.6.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="assets/js/game.js"></script>
+    <script defer src="assets/js/solid.min.js"></script>
+    <script defer src="assets/js/fontawesome.min.js"></script>
 </head>
 <body>
     <div class="container stats">
-        <a href="index.html">Back to Main Menu</a>
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
         <div class="turn">
             Turn : <span class="turn-val">1</span>
         </div>
@@ -21,13 +23,18 @@
         <div class="score">
             Score: <span class="score-val">0</span>
         </div>
-        <div>
+        <div class="save">
+            <i class="fa-solid fa-floppy-disk"></i>
             <input type="button" id="save" value="Save Game">
         </div>
     </div>
     <div class="container game">
         <div class="board">
             <div class="board-grid"></div>
+        </div>
+        <div class="arrow-container">
+            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-arrow-right"></i>
         </div>
         <div class="building-container"></div>
     </div>
