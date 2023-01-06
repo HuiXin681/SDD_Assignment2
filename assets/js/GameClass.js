@@ -129,7 +129,13 @@ export class Game {
 						$("#" + (i + 1) + "-" + j).addClass("adjacent");
 
 						this.updateTurn();
+
+						const arrow = $(".fa-arrow-right");
+						for (const a of arrow) {
+							a.style.visibility = 'hidden';
+						}
 					}
+
 				});
 
 				cell.addEventListener('drop', (e) => {
@@ -155,6 +161,11 @@ export class Game {
 							$("#" + (i + 1) + "-" + j).addClass("adjacent");
 
 							this.updateTurn();
+
+							const arrow = $(".fa-arrow-right");
+							for (const a of arrow) {
+								a.style.visibility = 'hidden';
+							}
 						}
 					}
 					e.target.classList.remove('drag-over');
