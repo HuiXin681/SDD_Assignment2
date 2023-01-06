@@ -80,7 +80,7 @@ export class Game {
 	}
 
 	updateTurn() {
-		// this.fillboard();
+		this.fillboard();
 		this.turns++;
 		$(".turn-val").html(String(this.turns));
 		this.updateScore();
