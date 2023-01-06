@@ -287,6 +287,20 @@ export class Game {
 			});
 			o.addEventListener('click',(e) => {
 				this.select(e.target);
+
+				const option = $(".option");
+				const selected =  $(".selected");
+				const arrow = $(".fa-arrow-right");
+
+				const index = option.index(selected);
+
+				for (const a of arrow) {
+					a.style.visibility = 'hidden';
+				}
+
+				console.log(arrow[index]);
+
+				arrow[index].style.visibility= 'visible';
 			});
 		}
 	}
