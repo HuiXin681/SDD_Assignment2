@@ -19,13 +19,32 @@ export class Game {
 		this.createBoard();
 		this.createOptions();
 		document.getElementById("form-popup").style.display = "none";
+		document.getElementById("save").addEventListener("click", ev => this.save());
+	}
+
+	save() {
+		let buildings = {};
+		for (const b of this.buildings) {
+			buildings[b.type] = [];
+		}
+
+		for (const cell of $(".filled")) {
+			const type = cell.innerText;
+			buildings[type].push(cell.id);
+		}
+
+		const save = {
+			"buildings": buildings,
+			"turns": this.turns,
+			"coins": this.coins,
+			"score": this.score
+		}
+
+		localStorage.setItem("save", JSON.stringify(save));
 	}
 
 	createBoard() {
 		for (let i = 0; i < this.cols; i++) {
-			// const col = document.createElement("div");
-			// col.classList.add("board-col");
-
 			for (let j = 0; j < this.rows; j++) {
 				const cell = document.createElement("div");
 				cell.classList.add("board-cell");
@@ -331,4 +350,11 @@ class Building {
 		this.name = name;
 		this.image = image;
 	}
+}
+
+class Save {
+	buildings;
+	turns;
+	coins;
+	score;
 }
