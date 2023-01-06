@@ -21,13 +21,18 @@ export class Game {
 			data = JSON.parse(localStorage.getItem("save"));
 			localStorage.removeItem("status");
 			console.log(data);
-			this.turns = data.turns;
-			this.coins = data.coins;
-			this.score = data.score;
-			data = data.buildings;
-			$(".turn-val").html(String(this.turns));
-			$(".coin-val").html(String(this.coins));
-			$(".score-val").html(String(this.score));
+			if (data !== null) {
+				this.turns = data.turns;
+				this.coins = data.coins;
+				this.score = data.score;
+				data = data.buildings;
+				$(".turn-val").html(String(this.turns));
+				$(".coin-val").html(String(this.coins));
+				$(".score-val").html(String(this.score));
+			}
+			else {
+				data = undefined;
+			}
 		}
 		this.createBoard(data);
 		this.createOptions();
