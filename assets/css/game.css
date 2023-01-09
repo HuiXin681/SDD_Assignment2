@@ -1,3 +1,8 @@
+a, a:hover {
+	text-decoration: none;
+	color: #fff;
+}
+
 body {
 	/*overflow: hidden;*/
 	/*align-items: center;*/
@@ -11,6 +16,12 @@ body {
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 98vh;
+}
+
+.information {
+	display: flex;
+	align-content: center;
+	justify-content: center;
 }
 
 .stats {
@@ -46,8 +57,9 @@ body {
 	display: flex;
 	align-content: center;
 	justify-content: center;
-	outline: 1px solid;
 	width: 100%;
+	cursor: pointer;
+	outline: 1px solid;
 }
 
 .building-container {
@@ -62,6 +74,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
+	cursor: pointer;
 	text-align: center;
 }
 
@@ -86,17 +99,17 @@ body {
 }
 
 /*selected arrow*/
-.arrow-container{
+.arrow-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: 100%;
 }
 
-.fa-arrow-right{
+.fa-arrow-right {
 	display: block;
-	scale: 3;
 	visibility: hidden;
+	scale: 3;
 }
 
 /*leaderboard*/
@@ -112,7 +125,7 @@ body {
 .form-container {
 	max-width: 300px;
 	padding: 10px;
-	background-color: white;
+	background-color: #fff;
 }
 
 .form-container input[type=text] {
@@ -134,34 +147,30 @@ body {
 	padding: 16px 20px;
 	cursor: pointer;
 	opacity: 0.8;
-	color: white;
+	color: #fff;
 	border: none;
-	background-color: #04AA6D;
+	background-color: #04aa6d;
 }
 
 .form-container .btn:hover, .open-button:hover {
 	opacity: 1;
 }
 
-/*Button style*/
-.save, a {
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 10px;
-	border-radius: 5px;
-	text-align: center;
-	margin: 0;
-	text-decoration: none;
+.info, .save, .return {
 	display: inline-block;
+	margin: 0;
+	padding: 10px;
 	cursor: pointer;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	/*transition-duration: 0.4s;*/
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	background-color: #4caf50;
 }
 
-.save:hover, a:hover {
-	/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);*/
-	color:white;
+.info:hover, .save:hover, .return:hover {
+	color: #fff;
 }
 
 .save svg {
@@ -169,7 +178,38 @@ body {
 }
 
 #save {
-	background: none;
-	border: none;
 	color: #fff;
+	border: none;
+	background: none;
+}
+
+.modal-dialog {
+	max-width: 70%;
+}
+
+.modal-content {
+	max-height: 70%;
+}
+
+.modal-body {
+	display: flex;
+}
+
+.modal-body_information {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	max-width: 20%;
+}
+
+.modal-body img {
+	max-width: 50%;
+}
+
+.modal-body_title {
+	font-size: larger;
+}
+
+.modal-body_desc {
+	padding: 20px;
 }

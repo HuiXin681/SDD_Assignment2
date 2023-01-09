@@ -12,8 +12,19 @@
     <script defer src="assets/js/fontawesome.min.js"></script>
 </head>
 <body>
+    <div class="container information">
+        <div class="info" data-bs-toggle="modal" data-bs-target="#informationModal">
+            <i class="fa-solid fa-square-question"></i>
+            Building Information
+        </div>
+    </div>
     <div class="container stats">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
+        <div class="return">
+            <a href="index.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Main Menu
+            </a>
+        </div>
         <div class="turn">
             Turn : <span class="turn-val">1</span>
         </div>
@@ -45,6 +56,22 @@
             <input type="text" id="username" name="username"><br><br>
             <input type="submit" value="Submit" id="submit">
         </form>
+    </div>
+
+    <div class="modal fade" id="informationModal" tabindex="-1" aria-labelledby="informationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h1 class="modal-title fs-5" id="informationModalLabel">Building Information</h1>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
