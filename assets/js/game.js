@@ -15,7 +15,7 @@ $(function () {
 	});
 
 	function gameHandler(response) {
-		const modalBody = $(".modal-body");
+		const modalBody = $("#informationModal .modal-body");
 		response.buildings.forEach(b => {
 			const img = document.createElement("img");
 			const info = document.createElement("div");
@@ -37,7 +37,7 @@ $(function () {
 		game.start();
 	}
 
-	$("#form").submit(function (e) {
+	$("#form").on("submit", function (e) {
 		e.preventDefault();
 		game.name = $("#username").val();
 		console.log("submitting");

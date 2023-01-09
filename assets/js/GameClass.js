@@ -36,8 +36,18 @@ export class Game {
 		}
 		this.createBoard(data);
 		this.createOptions();
-		document.getElementById("form-popup").style.display = "none";
-		document.getElementById("save").addEventListener("click", ev => this.save());
+		// document.getElementById("form-popup").style.display = "none";
+		document.getElementsByClassName("save")[0].addEventListener("click", ev => {
+			this.save();
+			ev.target.classList.add("fa-bounce");
+			const second = ev.target.innerHTML.split("-->")[1];
+			const first = ev.target.innerHTML.split(second)[0];
+			ev.target.innerHTML = first + " Game Saved!";
+			setTimeout(function() {
+				ev.target.classList.remove("fa-bounce");
+				ev.target.innerHTML = first + second;
+			}, 1500);
+		});
 	}
 
 	save() {
@@ -214,7 +224,6 @@ export class Game {
 
 			let adjacent = [];
 
-			// TODO: change to try catch
 			if (row !== 0) {
 				adjacent.push($("#" + (row - 1) + "-" + col));
 			}
@@ -304,7 +313,7 @@ export class Game {
 	            cell.classList.add("adjacent");
 	            cell.innerText = "R";
 	        }
-	        else{
+	        else {
 	            cell.classList.add("adjacent");
 	        }
 	        count++;
@@ -319,13 +328,11 @@ export class Game {
 				break;
 			}
 		}
-		if (isFilled || this.coins === 0) {
+
+		if (isFilled || this.coins <= 0) {
 			let firebase = new Firebase();
 			firebase.comparedata(this.score);
-			
-			
 		}
-
 	}
 
 	createOptions() {
@@ -365,7 +372,7 @@ export class Game {
 					a.style.visibility = 'hidden';
 				}
 
-				console.log(arrow[index]);
+				// console.log(arrow[index]);
 
 				arrow[index].style.visibility= 'visible';
 			});

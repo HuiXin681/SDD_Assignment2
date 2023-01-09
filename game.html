@@ -36,7 +36,7 @@
         </div>
         <div class="save">
             <i class="fa-solid fa-floppy-disk"></i>
-            <input type="button" id="save" value="Save Game">
+            Save Game
         </div>
     </div>
     <div class="container game">
@@ -50,12 +50,27 @@
         <div class="building-container"></div>
     </div>
 
-    <div class="form-popup" id="form-popup">
-        <form id="form" class="form-container">
-            <label for="username" id="id-username">Username:</label>
-            <input type="text" id="username" name="username"><br><br>
-            <input type="submit" value="Submit" id="submit">
-        </form>
+    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Congratulations!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        You've made it to the leaderboard! Enter a username to display in the leaderboard.
+                    </div>
+                    <form id="form">
+                        <div class="form-group mb-3">
+                            <label for="username" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="informationModal" tabindex="-1" aria-labelledby="informationModalLabel" aria-hidden="true">

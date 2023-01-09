@@ -183,6 +183,11 @@ body {
 	background: none;
 }
 
+#formModal .modal-body {
+	display: flex;
+	flex-direction: column;
+}
+
 .modal-dialog {
 	max-width: 70%;
 }
@@ -191,7 +196,7 @@ body {
 	max-height: 70%;
 }
 
-.modal-body {
+#informationModal .modal-body {
 	display: flex;
 }
 

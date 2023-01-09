@@ -7,7 +7,7 @@ export class Firebase {
 
 // Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	
+
 	init(game) {
 		const firebaseConfig = {
 			apiKey: "AIzaSyDW6_oxXuJir6N3yXQ7VaphGIqqLeCKiRg",
@@ -33,12 +33,12 @@ export class Firebase {
 				// https://firebase.google.com/docs/reference/js/firebase.User
 
 				set(ref(db, `Player/${game.name}`), {
-					name : game.name,
-					score : game.score
+					name: game.name,
+					score: game.score
 				})
-				
+
 				window.location.href = "leaderboard.html";
-				
+
 			}
 			else {
 				// User is signed out
@@ -59,7 +59,7 @@ export class Firebase {
 		return check;
 	}
 
-	
+
 	getData() {
 		const firebaseConfig = {
 			apiKey: "AIzaSyDW6_oxXuJir6N3yXQ7VaphGIqqLeCKiRg",
@@ -75,29 +75,31 @@ export class Firebase {
 		// Initialize Firebase
 		const app = initializeApp(firebaseConfig);
 		const analytics = getAnalytics(app);
-		var data = [];
+		let data = [];
 		const auth = getAuth();
 		const db = getDatabase();
 		const dbRef = ref(db, 'Player');
 		onValue(dbRef, (snapshot) => {
 			snapshot.forEach((childSnapshot) => {
-			  const users = childSnapshot.val();
-			  data.push(users);
+				const users = childSnapshot.val();
+				data.push(users);
 			});
 			data = data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
 			console.log(data);
 			appendData(data);
+
 			function appendData(data) {
 				let mainContainer = document.getElementById("myData");
 				mainContainer.innerHTML = "";
 				for (let i = 0; i < 10; i++) {
 					let div = document.createElement("div");
-					div.innerHTML =  [i+1] + ' : ' +'Name: ' + data[i].name + ' | score: ' + data[i].score;
+					div.innerHTML = [i + 1] + ' : ' + 'Name: ' + data[i].name + ' | score: ' + data[i].score;
 					mainContainer.appendChild(div);
-				};
+				}
+
 			}
 		});
-		
+
 		signInAnonymously(auth)
 			.then(() => {
 				// Signed in..
@@ -109,9 +111,10 @@ export class Firebase {
 				console.log(errorCode, errorMessage)
 			});
 	}
-	
+
 	comparedata(score) {
-		
+		console.log("comparing score");
+
 		const firebaseConfig = {
 			apiKey: "AIzaSyDW6_oxXuJir6N3yXQ7VaphGIqqLeCKiRg",
 			authDomain: "sdd-assignment2.firebaseapp.com",
@@ -122,7 +125,7 @@ export class Firebase {
 			appId: "1:489709989382:web:52fa10a4aa823f58cbdd87",
 			measurementId: "G-1G0ZBSNEBG"
 		};
-		
+
 		const app = initializeApp(firebaseConfig);
 		const analytics = getAnalytics(app);
 		const auth = getAuth();
@@ -136,19 +139,26 @@ export class Firebase {
 				data.push(users);
 			});
 			data = data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-			
+
 			for (let i = 0; i < data.length; i++) {
-				if(data[i].score <= score || data.length < 10){
+				if (data[i].score <= score || data.length < 10) {
 					meethighscore = true
 				}
 			}
-			if(meethighscore){
-				document.getElementById("form-popup").style.display = "block";
+			if (meethighscore) {
+				const formModal = $("#formModal");
+				formModal.modal({
+					backdrop: "static",
+					keyboard: false
+				});
+				formModal.on('hidden.bs.modal', function () {
+					window.location.href = "leaderboard.html";
+				});
+				formModal.modal("show");
 			}
-			else{
-				window.location.href = "leaderboard.html";
+			else {
+
 			}
 		});
-		
 	}
 }
