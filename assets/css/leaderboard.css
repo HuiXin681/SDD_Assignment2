@@ -1,19 +1,37 @@
-div{
-    background-color: rgb(73, 174, 6);
+body {
+    height: 98vh;
+}
+
+.highScore {
+    display: flex;
+    background-color: rgb(131, 176, 146);
     color: white;
     border: 2px solid black;
     margin: 20px;
     padding: 20px;
     font-size: large;
+    height: 70%;
 }
-#myData{
-    background-color: rgb(255, 255, 255);
+
+#myData {
+    color: white;
     border: none;
 }
+
+#myData div {
+    height: 10%;
+}
+
+.leaderboard {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #button {
-    margin-left: 30%;
-    margin-top: -5%;
-    background-color: #45c38c; /* Green */
+    background-color: #45c38c;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -24,9 +42,10 @@ div{
     transition-duration: 0.4s;
     cursor: pointer;
     width: 40%;
-  }
-  #button:hover {
+}
+
+#button:hover {
     background-color: #3fd3ae;
     color: white;
-  }
+}
   
